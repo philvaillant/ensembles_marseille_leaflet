@@ -53,7 +53,7 @@ var baseLayers = {
 // var layerControl = L.control.layers(null,overlayMaps).addTo(map);
 // var control = L.control.activeLayers(baseLayers, overlayMaps)
 // control.addTo(map)
-var layerControl = L.control.selectLayers(baseLayers,overlayMaps).addTo(map);
+var layerControl = L.control.selectLayers(overlayMaps,baseLayers).addTo(map);
 
 // console.log(allLayers[0].getLayers())
 // allLayers[0].addTo(map);
