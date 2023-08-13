@@ -32,6 +32,29 @@ var unclickStyle = {
   fillOpacity: 1,
 }
 
+function createListItems(dataArray) {
+  var htmlList = '';
+  dataArray.forEach((building) => {
+    htmlList += '<p>' + building.Titre + '</p>'
+  });
+  listContent = htmlList;
+};
+
+var Arrondissements = ['01','02','03'];
+
+function initializeControls() {
+
+  for (var arrondissement in Arrondissements) {
+    var arrondissementLayer = L.geoJson(data, {
+      filter: function (feat) { return feat.properties.team === team; }
+    });
+    var teamName = 'Team ' + team;
+    allTeams.addLayer(teamLayer);
+    teamLayers[teamName] = teamLayer;
+  }
+  L.control.layers(teamLayers).addTo(map);
+}
+
 // Attention : trouver une logique pour que le marker disparaisse quand on reclique
 function clickOnMarker(e) {
   // console.log("changement de style");
@@ -61,9 +84,9 @@ function drawMarkers(dataArray) {
   // pour le style, utiliser quelque chose comme ça : https://gis.stackexchange.com/questions/386886/changing-leaflet-circle-marker-colour-and-size-when-clicked-upon
   dataArray.forEach((building) => {
     layerGroup.addLayer(
-      L.circleMarker([building.lat, building.lon], unclickStyle).on("click", function(e) {
+      L.circleMarker([building.lat, building.lon], unclickStyle).on("click", function (e) {
         clickOnMarker(e);
-        updateMarker(e,building);
+        updateMarker(e, building);
       })
     )
   });
@@ -71,7 +94,7 @@ function drawMarkers(dataArray) {
 }
 console.log(dataPoints);
 
-function updateMarker(e,building) {
+function updateMarker(e, building) {
   // selectedMarker = ((selectedMarker == building) ? false : building);
   if (clicked) {
     clicked.setStyle(unclickStyle);
@@ -85,8 +108,8 @@ function updateMarker(e,building) {
     selectedMarker = building;
   }
   clicked = e.target;
-    infoContent = '<p>' + building.Titre + '</p><p>' + building.Adresse + '</p>';
-    sidebar.open('info');
+  infoContent = '<p>' + building.Titre + '</p><p>' + building.Adresse + '</p>';
+  sidebar.open('info');
 }
 
 // Adds a popup marker to the webmap for GGL address

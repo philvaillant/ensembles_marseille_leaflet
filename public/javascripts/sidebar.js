@@ -11,14 +11,6 @@ var listContent = '';
 console.log(dataPoints);
 //var infoBuilding = '<h1>' + dataPoints[0].Titre + '</h1>'
 
-function createListItems(dataArray) {
-    var htmlList = '';
-    dataArray.forEach((building) => {
-        htmlList += '<p>' + building.Titre + '</p>'
-    });
-    listContent = htmlList;
-};
-
 // add panels dynamically to the sidebar
 sidebar
     .addPanel({
