@@ -4,6 +4,7 @@
 var map = L.map('map').setView([43.2804765, 5.2154982], 12);
 var dataPoints;
 var infoContent = 'aucun ensemble sélectionné';
+var selectedMarker = false;
 
 // Adds the basemap tiles to your web map
 // Additional providers are available at: https://leaflet-extras.github.io/leaflet-providers/preview/
@@ -31,13 +32,15 @@ var unclickStyle = {
   fillOpacity: 1,
 }
 
+// Attention : trouver une logique pour que le marker disparaisse quand on reclique
 function clickOnMarker(e) {
-  console.log("changement de style");
-  if (clicked) {
-    clicked.setStyle(unclickStyle);
-  }
-  e.target.setStyle(clickStyle);
-  clicked = e.target;
+  // console.log("changement de style");
+  // if (clicked) {
+  //   console.log("set style unclick")
+  //   clicked.setStyle(unclickStyle);
+  // }
+  // e.target.setStyle(clickStyle);
+  // clicked = e.target;
 }
 
 fetch("../data/grands_ensembles_final.json")
@@ -48,24 +51,43 @@ fetch("../data/grands_ensembles_final.json")
     //initializeContentSidebar();
     console.log(dataPoints);
     // console.log(responseData);
-
-    const layerGroup = L.featureGroup().addTo(map);
-
-    // pour le style, utiliser quelque chose comme ça : https://gis.stackexchange.com/questions/386886/changing-leaflet-circle-marker-colour-and-size-when-clicked-upon
-    responseData.forEach((building) => {
-      layerGroup.addLayer(
-        L.circleMarker([building.lat, building.lon], unclickStyle).on("click", function (e) {
-          infoContent = '<p>' + building.Titre + '</p><p>' + building.Adresse + '</p>'; console.log("marker cliqué"); console.log(infoContent); sidebar.open('info'); clickOnMarker(e);
-        })
-        // .bindPopup(
-        //   `Titre: ${building.Titre}, Addresse: ${building.Adresse}`
-        // )
-      );
-    });
-
-    map.fitBounds(layerGroup.getBounds());
+    createListItems(responseData);
+    drawMarkers(responseData);
   });
+
+function drawMarkers(dataArray) {
+  const layerGroup = L.featureGroup().addTo(map);
+
+  // pour le style, utiliser quelque chose comme ça : https://gis.stackexchange.com/questions/386886/changing-leaflet-circle-marker-colour-and-size-when-clicked-upon
+  dataArray.forEach((building) => {
+    layerGroup.addLayer(
+      L.circleMarker([building.lat, building.lon], unclickStyle).on("click", function(e) {
+        clickOnMarker(e);
+        updateMarker(e,building);
+      })
+    )
+  });
+  map.fitBounds(layerGroup.getBounds());
+}
 console.log(dataPoints);
+
+function updateMarker(e,building) {
+  // selectedMarker = ((selectedMarker == building) ? false : building);
+  if (clicked) {
+    clicked.setStyle(unclickStyle);
+  }
+  if (selectedMarker == building) {
+    e.target.setStyle(unclickStyle);
+    selectedMarker = false;
+  }
+  else {
+    e.target.setStyle(clickStyle);
+    selectedMarker = building;
+  }
+  clicked = e.target;
+    infoContent = '<p>' + building.Titre + '</p><p>' + building.Adresse + '</p>';
+    sidebar.open('info');
+}
 
 // Adds a popup marker to the webmap for GGL address
 // L.circleMarker([43.659752, -79.378161]).addTo(map)

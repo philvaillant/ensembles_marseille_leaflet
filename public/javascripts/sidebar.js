@@ -5,43 +5,55 @@ var sidebar = L.control.sidebar({
     position: 'left',     // left or right
 }).addTo(map);
 
+var listContent = '';
+
 //pas encore chargé les points dans l'objet;
 console.log(dataPoints);
 //var infoBuilding = '<h1>' + dataPoints[0].Titre + '</h1>'
 
+function createListItems(dataArray) {
+    var htmlList = '';
+    dataArray.forEach((building) => {
+        htmlList += '<p>' + building.Titre + '</p>'
+    });
+    listContent = htmlList;
+};
+
 // add panels dynamically to the sidebar
 sidebar
-.addPanel({
-    id:   'js-api',
-    tab:  '<i class="fa fa-gear"></i>',
-    title: 'JS API',
-    pane: '<p>The Javascript API allows to dynamically create or modify the panel state.<p/><p><button onclick="sidebar.enablePanel(\'mail\')">enable mails panel</button><button onclick="sidebar.disablePanel(\'mail\')">disable mails panel</button></p><p><button onclick="addUser()">add user</button></b>',
-})
-// add a tab with a click callback, initially disabled
-.addPanel({
-    id:   'mail',
-    tab:  '<i class="fa fa-envelope"></i>',
-    title: 'Messages',
-    button: function() { alert('opened via JS callback') },
-    disabled: true,
-})
-.addPanel({
-    id:   'info',
-    tab:  '<i class="fa fa-user"></i>',
-    title: 'Messages',
-    disabled: false,
-    pane: '<div id="ensembleinfo">Aucun ensemble  sélectionné</div>'
-    //pane : '<h1>' + dataPoints[0].Titre + '</h1>'
-    //pane: infoBuilding
-})
+    .addPanel({
+        id: 'js-api',
+        tab: '<i class="fa fa-gear"></i>',
+        title: 'JS API',
+        pane: '<p>The Javascript API allows to dynamically create or modify the panel state.<p/><p><button onclick="sidebar.enablePanel(\'mail\')">enable mails panel</button><button onclick="sidebar.disablePanel(\'mail\')">disable mails panel</button></p><p><button onclick="addUser()">add user</button></b>',
+    })
+    // add a tab with a click callback, initially disabled
+    .addPanel({
+        id: 'mail',
+        tab: '<i class="fa fa-envelope"></i>',
+        title: 'Messages',
+        button: function () { alert('opened via JS callback') },
+        disabled: true,
+    })
+    .addPanel({
+        id: 'info',
+        tab: '<i class="fa fa-user"></i>',
+        title: 'Messages',
+        disabled: false,
+        pane: '<div id="ensembleinfo">Aucun ensemble  sélectionné</div>'
+        //pane : '<h1>' + dataPoints[0].Titre + '</h1>'
+        //pane: infoBuilding
+    })
 
-sidebar.on('content', function(e) {
+sidebar.on('content', function (e) {
     console.log("on content");
-    document.getElementById("ensembleinfo").innerHTML = '<h1>' + infoContent + '</h1>';
+    console.log(selectedMarker);
+    console.log(selectedMarker);
+    document.getElementById("ensembleinfo").innerHTML = (selectedMarker ? '<h1>' + infoContent + '</h1>' : listContent);
     // e.id contains the id of the opened panel
 })
 
-sidebar.on('open', function(e) {
+sidebar.on('open', function (e) {
     console.log("on content");
     // e.id contains the id of the opened panel
 })
@@ -52,7 +64,3 @@ sidebar.open('js-api');
 //         var sidebar = L.control.sidebar({ container: 'sidebar' })
 //             .addTo(map)
 //             .open('home');
-
-function initializeList(buildings) {
-
-}
