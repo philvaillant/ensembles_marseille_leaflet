@@ -7,11 +7,12 @@ var groupedLayer = new L.FeatureGroup();
 //potentiellement faire logement social ou copro;
 var arrondissement = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16']
 // var allLayers = Array(16).fill(new L.FeatureGroup());
+var newallLayers={};
 var allLayers = Array.from({length: 16}, () => { return new L.FeatureGroup();});
 // allLayers.forEach((layer) => {
 //     groupedLayer.addLayer(layer);
 // });
-groupedLayer.addTo(map);
+// groupedLayer.addTo(map);
 // var allLayers = [new L.FeatureGroup(),new L.FeatureGroup()]
 // var testLayer = new L.FeatureGroup();
 console.log(allLayers);
@@ -53,7 +54,8 @@ var baseLayers = {
 // var layerControl = L.control.layers(null,overlayMaps).addTo(map);
 // var control = L.control.activeLayers(baseLayers, overlayMaps)
 // control.addTo(map)
-var layerControl = L.control.selectLayers(overlayMaps,baseLayers).addTo(map);
+var layerControl = L.control.selectLayers(overlayMaps,baseLayers);
+// .addTo(map);
 
 // console.log(allLayers[0].getLayers())
 // allLayers[0].addTo(map);
@@ -68,6 +70,9 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 fetch("../data/grands_ensembles_final.json")
     .then((response) => response.json())
     .then((responseData) => {
+        const arrondissements = [...new Set(responseData.map(x => x.arrondissement))];
+        initializeFilterArrondissement(arrondissements);
+        // console.log(arrondissements);
         initializeMap(responseData);
     });
 
@@ -94,6 +99,8 @@ function addToProperLayer(point,arrondissement) {
     // if (arrondissement < 6) {
         var building = L.marker([point.lat,point.lon]);
         building.addTo(allLayers[(arrondissement-1)]);
+        building.addTo(newallLayers[point.arrondissement]);
         building.addTo(groupedLayer);
+        map.fitBounds(groupedLayer.getBounds())
     // }
 }
