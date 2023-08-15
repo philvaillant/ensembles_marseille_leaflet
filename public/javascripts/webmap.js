@@ -3,6 +3,7 @@
 // 13 represents the initial zoom level with higher values being more zoomed in
 var map = L.map('map').setView([43.2804765, 5.2154982], 12);
 var dataPoints;
+var filteredData;
 var infoContent = 'aucun ensemble sélectionné';
 var selectedMarker = false;
 
@@ -123,3 +124,14 @@ function updateMarker(e, building) {
 // 		'Tel: 416-9795000 Ext. 5192'
 // 	)
 // 	.openPopup();
+
+map.on("moveend", function() {
+  // console.log("mouvement fini");
+  var newBounds = map.getBounds();
+  // console.log(newBounds);
+  // console.log(newBounds.getWest())
+  filteredData = dataPoints.filter((item) => (item.lat > newBounds.getSouth() && item.lat < newBounds.getNorth() && item.lon < newBounds.getEast() && item.lon > newBounds.getWest()));
+  console.log(filteredData);
+  createListItems(filteredData);
+  document.getElementById("ensembleinfo").innerHTML = (selectedMarker ? '<h1>' + infoContent + '</h1>' : listContent);
+})

@@ -66,12 +66,6 @@ select:focus {
 
 /* buttons style */
 .default-button {
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
-}
-
-.default-button {
   display: inline-block;
   margin-bottom: 0;
   font-weight: 400;
@@ -91,4 +85,10 @@ select:focus {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.default-button {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
 }
