@@ -28,7 +28,7 @@ fetch("../data/grands_ensembles_final.json")
     .then((responseData) => {
         dataPoints = responseData;
         const arrondissements = [...new Set(responseData.map(x => x.arrondissement))];
-        // initializeContentSidebar(responseData);
+        initializeContentSidebar(responseData);
         initializeLayersAndFlyTo(allLayers, arrondissements);
         drawMarkers(responseData, arrondissements);
     });
