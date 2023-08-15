@@ -5,7 +5,7 @@ var sidebar = L.control.sidebar({
     position: 'left',     // left or right
 }).addTo(map);
 
-var listContent;
+var listContent='';
 
 // add panels dynamically to the sidebar
 sidebar
@@ -19,7 +19,7 @@ sidebar
         id: 'fiches',
         tab: '<i class="fa fa-list"></i>',
         title: 'Fiches',
-        pane: '<p>XXX<p>',
+        pane: '<div id="ensembleinfo">Aucun ensemble  sélectionné</div>',
     })
     .addPanel({
         id: 'about',
@@ -34,7 +34,7 @@ function initializeContentSidebar(dataArray) {
     dataArray.forEach((building) => {
         listContent += '<div value="test" style="cursor:pointer;">' + building.Titre + '</p>'
     });
-    document.getElementById("fiches").innerHTML = listContent;
+    document.getElementById("ensembleinfo").innerHTML = listContent;
     // listContent = htmlList;
 };
 
