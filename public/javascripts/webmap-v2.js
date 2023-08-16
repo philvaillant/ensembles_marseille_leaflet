@@ -55,9 +55,16 @@ function drawMarkers(dataArray, catArray) {
     dataArray.forEach((building) => {
         // layerGroup.addLayer(
         var buildingMarker = L.circleMarker([building.lat, building.lon], unclickStyle).on("click", function (e) {
-            showSidebarInfo(building.Titre)
+            showSidebarInfo(building.Titre);
+            buildingMarker.setStyle(clickStyle);
             // clickOnMarker(e);
             // updateSelectedPoint(e, building);
+        });
+        buildingMarker.on("mouseover",function(e){
+            buildingMarker.setStyle(clickStyle)
+        });
+        buildingMarker.on("mouseout",function(e){
+            buildingMarker.setStyle(unclickStyle)
         });
         buildingMarker.bindTooltip(building.Titre,tooltipStyle);
         buildingMarker.addTo(allLayers[building.arrondissement]);
