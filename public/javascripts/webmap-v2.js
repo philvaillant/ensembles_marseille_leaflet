@@ -72,4 +72,9 @@ function drawMarkers(dataArray, catArray) {
     });
 }
 
-
+map.on("moveend", function() {
+    var newBounds = map.getBounds();
+    filteredData = dataPoints.filter((item) => (item.lat > newBounds.getSouth() && item.lat < newBounds.getNorth() && item.lon < newBounds.getEast() && item.lon > newBounds.getWest()));
+    initializeContentSidebar(filteredData);
+    // document.getElementById("ensembleinfo").innerHTML = (selectedMarker ? '<h1>' + infoContent + '</h1>' : listContent);
+  })

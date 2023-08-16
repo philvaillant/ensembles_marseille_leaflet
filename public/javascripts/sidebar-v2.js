@@ -5,7 +5,7 @@ var sidebar = L.control.sidebar({
     position: 'left',     // left or right
 }).addTo(map);
 
-var listContent = '';
+var listContent;
 var selectedFiche;
 
 // add panels dynamically to the sidebar
@@ -32,6 +32,7 @@ sidebar.open('home');
 
 function initializeContentSidebar(dataArray) {
     // var htmlList = '';
+    listContent = '';
     dataArray.forEach((building) => {
         // console.log(building);
         listContent += '<div style="cursor:pointer;" class="fiche-title" id="' + building.Titre + '">' + building.Titre + '<div class="fiche-adresse" style="color:red;">' + building.Adresse + '</div><button class="bouton-page-details">fermez la fiche de détail</button></div></div>'
