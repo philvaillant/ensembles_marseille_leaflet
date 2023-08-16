@@ -6,6 +6,7 @@ var sidebar = L.control.sidebar({
 }).addTo(map);
 
 var listContent='';
+var selectedFiche;
 
 // add panels dynamically to the sidebar
 sidebar
@@ -32,13 +33,38 @@ sidebar.open('home');
 function initializeContentSidebar(dataArray) {
     // var htmlList = '';
     dataArray.forEach((building) => {
-        listContent += '<div value="test" style="cursor:pointer;">' + building.Titre + '</p>'
+        // console.log(building);
+        listContent += '<div style="cursor:pointer;" class="fiche-title" id="' + building.Titre + '">' + building.Titre + '<div class="fiche-adresse" style="color:red;">' + building.Adresse +'</div><button class="bouton-page-details">fermez la fiche de détail</button></div></div>'
+        // listContent += '<div style="cursor:pointer;"><div class="fiche-title" id="' + building.Titre + '" value="' + building.toString() + '">' + building.Titre + '</div><div class="fiche-adresse" style="color:red;">' + building.Adresse +'</div></div>'
     });
     document.getElementById("ensembleinfo").innerHTML = listContent;
     // listContent = htmlList;
 };
 
 document.getElementById("fiches").addEventListener('click', function (e) {
-    console.log(e.target.getAttribute('value'));
+    console.log(e.target.className);
+    console.log(e);
+    const element = e.target;
+    if (element.className=='fiche-title') {
+        console.log("montrer les détails")
+        showDetails(element);
+    }
+    else if (element.className=='bouton-page-details') {
+        goToList();
+    }
+    // console.log(e.target.id);
+    // console.log(e.target);
+    // e.target.classList.add('visible');
+    // console.log(e.target.getAttribute("value"));
+    // selectedFiche = e.target.id;
     // e.id contains the id of the opened panel
 });
+
+function showDetails(element) {
+    element.classList.add('visible');
+    selectedFiche = element;
+}
+
+function goToList() {
+    selectedFiche.classList.remove('visible');
+}

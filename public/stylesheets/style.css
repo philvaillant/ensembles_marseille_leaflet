@@ -18,6 +18,18 @@ a {
   background-color: red;
 }
 
+.fiche-title > div, .fiche-title > button {
+  display: none;
+}
+
+.fiche-title.visible ~ div, div:has(~ .fiche-title.visible) {
+  display: none;
+}
+
+.fiche-title.visible > div, .fiche-title.visible > button {
+  display: block;
+}
+
 /* select style */
 select {
   display: block;
