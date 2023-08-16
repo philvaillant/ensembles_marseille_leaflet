@@ -20,12 +20,12 @@ var unclickStyle = {
     fillColor: "#344feb",
     color: "#344feb",
     weight: 1,
-    opacity: 1,
-    fillOpacity: 1,
+    opacity: 0.8,
+    fillOpacity: 0.8,
 }
 
 var clickStyle = {
-    radius: 6,
+    radius: 8,
     fillColor: '#990F02',
     color: '#990F02',
     weight: 1,
@@ -61,7 +61,7 @@ function drawMarkers(dataArray, catArray) {
         });
         buildingMarker.bindTooltip(building.Titre,tooltipStyle);
         buildingMarker.addTo(allLayers[building.arrondissement]);
-        markersObject[building.titre]=buildingMarker;
+        markersObject[building.Titre]=buildingMarker;
     });
 }
 
