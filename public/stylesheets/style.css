@@ -19,15 +19,40 @@ a {
 }
 
 .fiche-title > div, .fiche-title > button {
+  /* transform:translate(9999px);
+  opacity: 0; */
   display: none;
+  opacity: 0;
+  transition: opacity 0s, max-height 0s;
+  max-height: 0;
+  /* max-height: 0;
+  transition: max-height 2s linear; */
+  /* transition: opacity 1s ease-out;
+  opacity: 0; */
 }
 
 .fiche-title.visible ~ div, div:has(~ .fiche-title.visible) {
-  display: none;
+  /* transform:translate(9999px);
+  opacity: 0; */
+  /* display: none; */
+  opacity: 0;
+  transition: opacity 0s, max-height 0s;
+  max-height: 0;
+  /* transition: opacity 1s ease-out;
+  opacity: 0; */
+  /* max-height: 0;
+  transition: max-height 2s linear; */
 }
 
 .fiche-title.visible > div, .fiche-title.visible > button {
+  /* transition: opacity 2s linear;  
+  transform:translate(0);
+  opacity: 1; */
   display: block;
+  opacity: 1;
+  transition: opacity 1s, max-height 10s ease-out 10s;
+  /* transition: max-height 2s linear; */
+  max-height: 100px;
 }
 
 /* select style */
