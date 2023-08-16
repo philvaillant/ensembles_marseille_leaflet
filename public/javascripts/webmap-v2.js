@@ -16,11 +16,16 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Style des marqueurs
 var unclickStyle = {
     radius: 6,
-    fillColor: "#09f9df",
-    color: "#ff0000",
+    fillColor: "#344feb",
+    color: "#344feb",
     weight: 1,
     opacity: 1,
     fillOpacity: 1,
+}
+
+var tooltipStyle = {
+    direction:'top',
+    offset:[0,-5]
 }
 
 fetch("../data/grands_ensembles_final.json")
@@ -40,9 +45,11 @@ function drawMarkers(dataArray, catArray) {
     dataArray.forEach((building) => {
         // layerGroup.addLayer(
         var buildingMarker = L.circleMarker([building.lat, building.lon], unclickStyle).on("click", function (e) {
+            showSidebarInfo(building.Titre)
             // clickOnMarker(e);
             // updateSelectedPoint(e, building);
         });
+        buildingMarker.bindTooltip(building.Titre,tooltipStyle);
         buildingMarker.addTo(allLayers[building.arrondissement])
     });
 }

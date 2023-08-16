@@ -41,13 +41,17 @@ function initializeContentSidebar(dataArray) {
     // listContent = htmlList;
 };
 
+document.getElementById("fiches").addEventListener('mouseover', function (e) {
+    console.log(e.target.id);
+});
+
 document.getElementById("fiches").addEventListener('click', function (e) {
     console.log(e.target.className);
     console.log(e);
     const element = e.target;
     if (element.className=='fiche-title') {
         console.log("montrer les détails")
-        showDetails(element);
+        showDetails(element.id);
     }
     else if (element.className=='bouton-page-details') {
         goToList();
@@ -60,11 +64,16 @@ document.getElementById("fiches").addEventListener('click', function (e) {
     // e.id contains the id of the opened panel
 });
 
-function showDetails(element) {
-    element.classList.add('visible');
-    selectedFiche = element;
+function showDetails(ficheId) {
+    document.getElementById(ficheId).classList.add('visible');
+    selectedFiche = ficheId;
 }
 
 function goToList() {
-    selectedFiche.classList.remove('visible');
+    document.getElementById(selectedFiche).classList.remove('visible');
+}
+
+function showSidebarInfo(markerId) {
+    sidebar.open('fiches');
+    showDetails(markerId);
 }
