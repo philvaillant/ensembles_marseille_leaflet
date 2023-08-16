@@ -3,6 +3,7 @@
 // initialisation de la carte
 var map = L.map('map').setView([43.3104670508, 5.42204763845], 12);
 var allLayers = {};
+var markersObject = {};
 
 // Hold data in a variable
 var dataPoints;
@@ -18,6 +19,15 @@ var unclickStyle = {
     radius: 6,
     fillColor: "#344feb",
     color: "#344feb",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 1,
+}
+
+var clickStyle = {
+    radius: 6,
+    fillColor: '#990F02',
+    color: '#990F02',
     weight: 1,
     opacity: 1,
     fillOpacity: 1,
@@ -50,7 +60,8 @@ function drawMarkers(dataArray, catArray) {
             // updateSelectedPoint(e, building);
         });
         buildingMarker.bindTooltip(building.Titre,tooltipStyle);
-        buildingMarker.addTo(allLayers[building.arrondissement])
+        buildingMarker.addTo(allLayers[building.arrondissement]);
+        markersObject[building.titre]=buildingMarker;
     });
 }
 
