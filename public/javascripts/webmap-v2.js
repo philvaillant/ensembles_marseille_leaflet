@@ -50,14 +50,14 @@ fetch("../data/grands_ensembles_final.json")
         dataPoints = responseData;
         const arrondissements = [...new Set(responseData.map(x => x.arrondissement))];
         initializeContentSidebar(responseData);
-        initializeLayersAndFlyTo(allLayers, arrondissements);
+        initializeLayersAndFlyTo(arrondissements);
         drawMarkers(responseData, arrondissements);
     });
 
 function drawMarkers(dataArray, catArray) {
-    catArray.forEach((item) => {
-        allLayers[item] = new L.FeatureGroup().addTo(map);
-    });
+    // catArray.forEach((item) => {
+    //     allLayers[item] = new L.FeatureGroup().addTo(map);
+    // });
     dataArray.forEach((building) => {
         // layerGroup.addLayer(
         var buildingMarker = L.circleMarker([building.lat, building.lon], unclickStyle).on("click", function (e) {
@@ -102,3 +102,17 @@ map.on("moveend", function () {
     initializeContentSidebar(filteredData);
     // document.getElementById("ensembleinfo").innerHTML = (selectedMarker ? '<h1>' + infoContent + '</h1>' : listContent);
 })
+
+function initializeLayersAndFlyTo(arrondissementsArray) {
+    var htmlitemarrondissement = '';
+    arrondissementsArray.forEach((item) => {
+        allLayers[item]= new L.FeatureGroup().addTo(map);
+        htmlitemarrondissement += '<a href="#" value="' + item + '">Arrondissement ' + item + '</a>'
+    });
+    document.getElementById("menu-arrondissements").innerHTML = htmlitemarrondissement;
+}
+
+document.getElementById("menu-arrondissements").addEventListener('click', (event) => {
+    arrondissementSelected = event.target.getAttribute('value');
+    map.flyToBounds(allLayers[arrondissementSelected].getBounds(), { duration: 1 } )
+ });
