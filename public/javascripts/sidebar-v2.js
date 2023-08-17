@@ -39,7 +39,7 @@ function initializeContentSidebar(dataArray) {
         // listContent += '<div style="cursor:pointer;"><div class="fiche-title" id="' + building.Titre + '" value="' + building.toString() + '">' + building.Titre + '</div><div class="fiche-adresse" style="color:red;">' + building.Adresse +'</div></div>'
     });
     // Il faut seulement afficher le contenu si on est à la page de liste
-    document.getElementById("ensembleinfo").innerHTML = listContent;
+    if (!selectedFiche) {document.getElementById("ensembleinfo").innerHTML = listContent};
     // listContent = htmlList;
 };
 
@@ -72,7 +72,7 @@ document.getElementById("fiches").addEventListener('click', function (e) {
 });
 
 function showDetails(ficheId) {
-    if (document.getElementById(selectedFiche)) {
+    if (selectedFiche) {
         document.getElementById(selectedFiche).classList.remove('visible');
     }
     document.getElementById(ficheId).classList.add('visible');
@@ -81,8 +81,9 @@ function showDetails(ficheId) {
 
 function goToList() {
     document.getElementById(selectedFiche).classList.remove('visible');
+    document.getElementById("ensembleinfo").innerHTML = listContent;
     markersObject[selectedFiche].setStyle(unclickStyle);
-    selectedFiche = '';
+    selectedFiche = false;
 }
 
 function showSidebarInfo(markerId) {
