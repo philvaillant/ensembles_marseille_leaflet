@@ -4,6 +4,7 @@
 var map = L.map('map').setView([43.3104670508, 5.42204763845], 12);
 var allLayers = {};
 var markersObject = {};
+var selectedMarker = L.circleMarker();
 
 // Hold data in a variable
 var dataPoints;
@@ -22,20 +23,25 @@ var unclickStyle = {
     weight: 1,
     opacity: 0.8,
     fillOpacity: 0.8,
+    stroke: false,
+    zIndexOffset: 0
 }
 
 var clickStyle = {
     radius: 8,
     fillColor: '#990F02',
     color: '#990F02',
-    weight: 1,
+    weight: 2,
     opacity: 1,
     fillOpacity: 1,
+    stroke: false,
+    zIndexOffset: 1000
 }
 
+
 var tooltipStyle = {
-    direction:'top',
-    offset:[0,-5]
+    direction: 'top',
+    offset: [0, -5]
 }
 
 fetch("../data/grands_ensembles_final.json")
@@ -56,25 +62,43 @@ function drawMarkers(dataArray, catArray) {
         // layerGroup.addLayer(
         var buildingMarker = L.circleMarker([building.lat, building.lon], unclickStyle).on("click", function (e) {
             showSidebarInfo(building.Titre);
-            buildingMarker.setStyle(clickStyle);
+            highlightSelectedMarker(buildingMarker);
+            // selectedMarker.setStyle(unclickStyle);
+            // buildingMarker.bringToFront();
+            // buildingMarker.setStyle(clickStyle);
+            // selectedMarker = buildingMarker;
             // clickOnMarker(e);
             // updateSelectedPoint(e, building);
         });
-        buildingMarker.on("mouseover",function(e){
-            buildingMarker.setStyle(clickStyle)
+        buildingMarker.on("mouseover", function (e) {
+            if (selectedMarker != buildingMarker) {
+                buildingMarker.setStyle(clickStyle)
+            }
         });
-        buildingMarker.on("mouseout",function(e){
-            buildingMarker.setStyle(unclickStyle)
+        buildingMarker.on("mouseout", function (e) {
+            if (selectedMarker != buildingMarker) {
+                buildingMarker.setStyle(unclickStyle);
+            }
         });
-        buildingMarker.bindTooltip(building.Titre,tooltipStyle);
+        buildingMarker.on("focus", function (e) {
+            buildingMarker.setStyle(clickStyle);
+        });
+        buildingMarker.bindTooltip(building.Titre, tooltipStyle);
         buildingMarker.addTo(allLayers[building.arrondissement]);
-        markersObject[building.Titre]=buildingMarker;
+        markersObject[building.Titre] = buildingMarker;
     });
 }
 
-map.on("moveend", function() {
+function highlightSelectedMarker(marker) {
+    selectedMarker.setStyle(unclickStyle);
+    marker.bringToFront();
+    marker.setStyle(clickStyle);
+    selectedMarker = marker;
+}
+
+map.on("moveend", function () {
     var newBounds = map.getBounds();
     filteredData = dataPoints.filter((item) => (item.lat > newBounds.getSouth() && item.lat < newBounds.getNorth() && item.lon < newBounds.getEast() && item.lon > newBounds.getWest()));
     initializeContentSidebar(filteredData);
     // document.getElementById("ensembleinfo").innerHTML = (selectedMarker ? '<h1>' + infoContent + '</h1>' : listContent);
-  })
+})

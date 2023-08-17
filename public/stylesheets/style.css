@@ -4,6 +4,11 @@ body {
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
 }
 
+/* problème avec un contour autour des marqueurs sans ça */
+.leaflet-interactive:focus {
+  outline: none;
+}
+
 a {
   color: #00B7FF;
 }

@@ -131,7 +131,6 @@ map.on("moveend", function() {
   // console.log(newBounds);
   // console.log(newBounds.getWest())
   filteredData = dataPoints.filter((item) => (item.lat > newBounds.getSouth() && item.lat < newBounds.getNorth() && item.lon < newBounds.getEast() && item.lon > newBounds.getWest()));
-  console.log(filteredData);
   createListItems(filteredData);
   document.getElementById("ensembleinfo").innerHTML = (selectedMarker ? '<h1>' + infoContent + '</h1>' : listContent);
 })

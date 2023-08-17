@@ -35,9 +35,10 @@ function initializeContentSidebar(dataArray) {
     listContent = '';
     dataArray.forEach((building) => {
         // console.log(building);
-        listContent += '<div style="cursor:pointer;" class="fiche-title" id="' + building.Titre + '">' + building.Titre + '<div class="fiche-adresse" style="color:red;">' + building.Adresse + '</div><button class="bouton-page-details">fermez la fiche de détail</button></div></div>'
+        listContent += '<div style="cursor:pointer;" class="fiche-title' + ((selectedFiche==building.Titre) ? ' visible' : '') + '" id="' + building.Titre + '">' + building.Titre + '<div class="fiche-adresse" style="color:red;">' + building.Adresse + '</div><button class="bouton-page-details">fermez la fiche de détail</button></div></div>'
         // listContent += '<div style="cursor:pointer;"><div class="fiche-title" id="' + building.Titre + '" value="' + building.toString() + '">' + building.Titre + '</div><div class="fiche-adresse" style="color:red;">' + building.Adresse +'</div></div>'
     });
+    // Il faut seulement afficher le contenu si on est à la page de liste
     document.getElementById("ensembleinfo").innerHTML = listContent;
     // listContent = htmlList;
 };
@@ -55,11 +56,8 @@ document.getElementById("fiches").addEventListener('mouseout', function (e) {
 });
 
 document.getElementById("fiches").addEventListener('click', function (e) {
-    console.log(e.target.className);
-    console.log(e);
     const element = e.target;
     if (element.className == 'fiche-title') {
-        console.log("montrer les détails")
         showDetails(element.id);
     }
     else if (element.className == 'bouton-page-details') {
@@ -74,12 +72,17 @@ document.getElementById("fiches").addEventListener('click', function (e) {
 });
 
 function showDetails(ficheId) {
+    if (document.getElementById(selectedFiche)) {
+        document.getElementById(selectedFiche).classList.remove('visible');
+    }
     document.getElementById(ficheId).classList.add('visible');
     selectedFiche = ficheId;
 }
 
 function goToList() {
     document.getElementById(selectedFiche).classList.remove('visible');
+    markersObject[selectedFiche].setStyle(unclickStyle);
+    selectedFiche = '';
 }
 
 function showSidebarInfo(markerId) {
