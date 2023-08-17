@@ -16,6 +16,7 @@
     "leaflet": "^1.9.4",
     "leaflet-sidebar-v2": "^3.2.3",
     "leaflet.select-layers": "^0.4.0",
+    "leaflet.zoomhome": "^1.0.0",
     "morgan": "~1.9.1"
   },
   "devDependencies": {

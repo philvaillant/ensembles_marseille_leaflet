@@ -1,7 +1,14 @@
 // import { initializeLayersAndFlyTo } from "./flyto.js";
 
 // initialisation de la carte
-var map = L.map('map').setView([43.3104670508, 5.42204763845], 12);
+// Si je sélectionne autopan
+// var map = L.map('map', { zoomControl: false }).setView([43.3104670508, 5.42204763845], 12);
+// Si je désélectionne autopan
+var map = L.map('map', { zoomControl: false }).setView([43.3151520061, 5.4014969511], 12);
+// Ajouter un bouton zoom d'initialisation
+// Il faudrait changer les coordonner du zoomhome en fonction de l'ouverture de la sidebar
+var zoomHome = L.Control.zoomHome({homecoordinates: [43.3104670508, 5.42204763845]});
+zoomHome.addTo(map);
 var allLayers = {};
 var markersObject = {};
 var selectedMarker = L.circleMarker();
