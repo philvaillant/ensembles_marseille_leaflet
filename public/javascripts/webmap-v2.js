@@ -7,7 +7,7 @@
 var map = L.map('map', { zoomControl: false }).setView([43.3151520061, 5.4014969511], 12);
 // Ajouter un bouton zoom d'initialisation
 // Il faudrait changer les coordonner du zoomhome en fonction de l'ouverture de la sidebar
-var zoomHome = L.Control.zoomHome({homecoordinates: [43.3104670508, 5.42204763845]});
+var zoomHome = L.Control.zoomHome({ homecoordinates: [43.3104670508, 5.42204763845] });
 zoomHome.addTo(map);
 var allLayers = {};
 var markersObject = {};
@@ -18,22 +18,22 @@ var dataPoints;
 
 // Objet pour donner un meilleur libellé aux arrondissements (ce serait mieux de changer les données source)
 var libellesArrondissements = {
-    "01" : "1er arrondissement",
-    "02" :   "2ème arrondissement",
-    "03" :   "3ème arrondissement",
-    "04" :   "4ème arrondissement",
-    "05" :   "5ème arrondissement",
-    "06" :   "6ème arrondissement",
-    "07" :   "7ème arrondissement",
-    "08" :   "8ème arrondissement",
-    "09" :   "9ème arrondissement",
-    "10" :  "10ème arrondissement",
-    "11" :  "11ème arrondissement",
-    "12" :  "12ème arrondissement",
-    "13" :  "13ème arrondissement",
-    "14" :  "14ème arrondissement",
-    "15" :  "15ème arrondissement",
-    "16" :  "16ème arrondissement"
+    "01": "1er arrondissement",
+    "02": "2ème arrondissement",
+    "03": "3ème arrondissement",
+    "04": "4ème arrondissement",
+    "05": "5ème arrondissement",
+    "06": "6ème arrondissement",
+    "07": "7ème arrondissement",
+    "08": "8ème arrondissement",
+    "09": "9ème arrondissement",
+    "10": "10ème arrondissement",
+    "11": "11ème arrondissement",
+    "12": "12ème arrondissement",
+    "13": "13ème arrondissement",
+    "14": "14ème arrondissement",
+    "15": "15ème arrondissement",
+    "16": "16ème arrondissement"
 };
 
 // Ajout de la basemap
@@ -74,8 +74,14 @@ var tooltipStyle = {
 fetch("../data/grands_ensembles_final.json")
     .then((response) => response.json())
     .then((responseData) => {
-        dataPoints = responseData;
+        // Il faut que je fasse en sorte que l'ordre d'ajout des arrondissements soient le bons, donc avant d'ordonner les données
         const arrondissements = [...new Set(responseData.map(x => x.arrondissement))];
+        dataPoints = responseData.sort(function (a, b) {
+            if (a.Titre < b.Titre) {
+                return -1;
+            }
+        });
+        // dataPoints = responseData;
         initializeContentSidebar(responseData);
         initializeLayersAndFlyTo(arrondissements);
         drawMarkers(responseData, arrondissements);
@@ -133,7 +139,7 @@ map.on("moveend", function () {
 function initializeLayersAndFlyTo(arrondissementsArray) {
     var htmlitemarrondissement = '';
     arrondissementsArray.forEach((item) => {
-        allLayers[item]= new L.FeatureGroup().addTo(map);
+        allLayers[item] = new L.FeatureGroup().addTo(map);
         htmlitemarrondissement += '<a href="#" value="' + item + '">' + libellesArrondissements[item] + '</a>'
     });
     document.getElementById("menu-arrondissements").innerHTML = htmlitemarrondissement;
@@ -141,5 +147,5 @@ function initializeLayersAndFlyTo(arrondissementsArray) {
 
 document.getElementById("menu-arrondissements").addEventListener('click', (event) => {
     arrondissementSelected = event.target.getAttribute('value');
-    map.flyToBounds(allLayers[arrondissementSelected].getBounds(), { duration: 1 } )
- });
+    map.flyToBounds(allLayers[arrondissementSelected].getBounds(), { duration: 1 })
+});
