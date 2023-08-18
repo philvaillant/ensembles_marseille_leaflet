@@ -35,7 +35,7 @@ function initializeContentSidebar(dataArray) {
     listContent = '';
     dataArray.forEach((building) => {
         // console.log(building);
-        listContent += '<div style="cursor:pointer;" class="fiche-title' + ((selectedFiche==building.Titre) ? ' visible' : '') + '" id="' + building.Titre + '">' + building.Titre + '<div class="fiche-adresse" style="color:red;">' + building.Adresse + '</div><button class="bouton-page-details">fermez la fiche de détail</button></div></div>'
+        listContent += '<div class="bouton-6 fiche-title' + ((selectedFiche==building.Titre) ? ' visible' : '') + '" id="' + building.Titre + '">' + building.Titre + '<div class="fiche-adresse" style="color:red;">' + building.Adresse + '</div><button class="bouton-page-details">fermez la fiche de détail</button></div></div>'
         // listContent += '<div style="cursor:pointer;"><div class="fiche-title" id="' + building.Titre + '" value="' + building.toString() + '">' + building.Titre + '</div><div class="fiche-adresse" style="color:red;">' + building.Adresse +'</div></div>'
     });
     // Il faut seulement afficher le contenu si on est à la page de liste
@@ -57,10 +57,10 @@ document.getElementById("fiches").addEventListener('mouseout', function (e) {
 
 document.getElementById("fiches").addEventListener('click', function (e) {
     const element = e.target;
-    if (element.className == 'fiche-title') {
+    if (element.classList.contains('fiche-title')) {
         showDetails(element.id);
     }
-    else if (element.className == 'bouton-page-details') {
+    else if (element.classList.contains('bouton-page-details')) {
         goToList();
     }
     // console.log(e.target.id);
