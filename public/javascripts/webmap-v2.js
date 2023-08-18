@@ -94,8 +94,8 @@ function drawMarkers(dataArray, catArray) {
     dataArray.forEach((building) => {
         // layerGroup.addLayer(
         var buildingMarker = L.circleMarker([building.lat, building.lon], unclickStyle).on("click", function (e) {
-            showSidebarInfo(building.Titre);
             highlightSelectedMarker(buildingMarker);
+            showSidebarInfo(building.Titre);
             // selectedMarker.setStyle(unclickStyle);
             // buildingMarker.bringToFront();
             // buildingMarker.setStyle(clickStyle);
