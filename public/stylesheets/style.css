@@ -23,7 +23,7 @@ a {
   background-color: red;
 }
 
-.fiche-title > div, .fiche-title > button {
+.fiche-title > div, .fiche-title > button, .fiche-title > img {
   /* transform:translate(9999px);
   opacity: 0; */
   display: none;
@@ -54,7 +54,7 @@ a {
   transition: max-height 2s linear; */
 }
 
-.fiche-title.visible > div, .fiche-title.visible > button {
+.fiche-title.visible > div, .fiche-title.visible > button, .fiche-title.visible > img {
   /* transition: opacity 2s linear;  
   transform:translate(0);
   opacity: 1; */

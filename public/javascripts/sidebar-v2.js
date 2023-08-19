@@ -37,7 +37,7 @@ function initializeContentSidebar(dataArray) {
         // console.log(building);
         // bizarre que l'initialisation du contenu prenne en compte la fiche sélectionnée : il faut dissocier
         // listContent += '<div class="button-6 fiche-title' + ((selectedFiche==building.Titre) ? ' visible' : '') + '" id="' + building.Titre + '">' + building.Titre + '<div class="fiche-adresse" style="color:red;">' + building.Adresse + '</div><button class="bouton-page-details">fermez la fiche de détail</button></div></div>'
-        listContent += '<div class="button-6 fiche-title" id="' + building.Titre + '">' + building.Titre + '<div class="fiche-adresse" style="color:red;">' + building.Adresse + '</div><button class="bouton-page-details">fermez la fiche de détail</button></div></div>'
+        listContent += '<div class="button-6 fiche-title" id="' + building.Titre + '">' + building.Titre + '<div class="fiche-adresse" style="color:red;">' + building.Adresse + '</div><img src="' + building.Image + '"><button class="bouton-page-details">fermez la fiche de détail</button></div></div>'
 
         // listContent += '<div style="cursor:pointer;"><div class="fiche-title" id="' + building.Titre + '" value="' + building.toString() + '">' + building.Titre + '</div><div class="fiche-adresse" style="color:red;">' + building.Adresse +'</div></div>'
     });
