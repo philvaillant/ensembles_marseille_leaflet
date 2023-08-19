@@ -40,6 +40,8 @@ a {
   /* transform:translate(9999px);
   opacity: 0; */
   /* display: none; */
+  /* Le display none est hyper important pour ne pas trigger les events */
+  display: none;
   opacity: 0;
   transition: opacity 0s, max-height 0s;
   max-height: 0;

@@ -132,6 +132,7 @@ function highlightSelectedMarker(marker) {
 map.on("moveend", function () {
     var newBounds = map.getBounds();
     filteredData = dataPoints.filter((item) => (item.lat > newBounds.getSouth() && item.lat < newBounds.getNorth() && item.lon < newBounds.getEast() && item.lon > newBounds.getWest()));
+    // en fait il ne faut associer le nouveau html que s'il n'y a pas de fiche ouverte -> mais normalement c'est le cas
     initializeContentSidebar(filteredData);
     // document.getElementById("ensembleinfo").innerHTML = (selectedMarker ? '<h1>' + infoContent + '</h1>' : listContent);
 })
