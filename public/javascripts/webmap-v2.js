@@ -71,6 +71,7 @@ var tooltipStyle = {
     offset: [0, -5]
 }
 
+// Il faudra corriger les données où pour une ligne il y a 5 résidences
 fetch("../data/grands_ensembles_final.json")
     .then((response) => response.json())
     .then((responseData) => {
