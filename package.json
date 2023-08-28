@@ -1,11 +1,14 @@
 {
   "name": "ensembles-marseille-leaflet",
   "version": "0.0.0",
+  "homage":"http://philvaillant.github.io/ensembles_marseille_leaflet",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "watch": "nodemon --ext json,ejs,css,js",
-    "build": "browserify js_elements/webmap.js -o public/javascripts/webmap.js"
+    "build": "browserify js_elements/webmap.js -o public/javascripts/webmap.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -21,6 +24,7 @@
   },
   "devDependencies": {
     "connect-livereload": "^0.6.1",
+    "gh-pages": "^6.0.0",
     "livereload": "^0.9.3",
     "nodemon": "^3.0.1"
   }
