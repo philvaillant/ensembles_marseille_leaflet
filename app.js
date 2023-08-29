@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const fs = require('fs')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -48,5 +49,36 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// A voir si ça peut convenir : https://stackoverflow.com/questions/60494449/how-to-save-rendered-html-view-files-from-expressjs-routes
+// app.get('/', (req, res, next) => {
+//   res.render('./pages/home')
+//     exportTemplateFile('views/pages/home.ejs', 'index.html');
+//     console.log('file rendered and saved successfully')
+// })
+
+// function createTemplateFile(filename) {
+//   fs.open(filename,'r',function(err, fd){
+//     if (err) {
+//       fs.writeFile(filename, '', function(err) {
+//           if(err) {
+//               console.log(err);
+//           }
+//       });
+//     }
+//   });
+// }
+
+// async function exportTemplateFile(templateLocation, templateName) {
+//   var html = await ejs.renderFile(templateLocation);
+
+//   createTemplateFile('templates/'+templateName);
+
+//   var stream = fs.createWriteStream('templates/'+templateName);
+//   stream.once('open', function (fd) {
+//     stream.write(`${html}`);
+//     stream.end();
+//   });
+// }
 
 module.exports = app;

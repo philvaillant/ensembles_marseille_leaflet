@@ -1,7 +1,7 @@
 {
   "name": "ensembles-marseille-leaflet",
   "version": "0.0.0",
-  "homage":"http://philvaillant.github.io/ensembles_marseille_leaflet",
+  "homage": "http://philvaillant.github.io/ensembles_marseille_leaflet",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
@@ -20,9 +20,11 @@
     "leaflet-sidebar-v2": "^3.2.3",
     "leaflet.select-layers": "^0.4.0",
     "leaflet.zoomhome": "^1.0.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
+    "browserify-unpack": "^0.4.2",
     "connect-livereload": "^0.6.1",
     "gh-pages": "^6.0.0",
     "livereload": "^0.9.3",
