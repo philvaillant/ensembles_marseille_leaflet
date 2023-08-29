@@ -72,7 +72,7 @@ var tooltipStyle = {
 }
 
 // Il faudra corriger les données où pour une ligne il y a 5 résidences
-fetch("../data/grands_ensembles_final.json")
+fetch("data/grands_ensembles_final.json")
     .then((response) => response.json())
     .then((responseData) => {
         // Il faut que je fasse en sorte que l'ordre d'ajout des arrondissements soient le bons, donc avant d'ordonner les données
