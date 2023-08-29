@@ -72,21 +72,34 @@ var tooltipStyle = {
 }
 
 // Il faudra corriger les données où pour une ligne il y a 5 résidences
-fetch("../data/grands_ensembles_final.json")
-    .then((response) => response.json())
-    .then((responseData) => {
-        // Il faut que je fasse en sorte que l'ordre d'ajout des arrondissements soient le bons, donc avant d'ordonner les données
-        const arrondissements = [...new Set(responseData.map(x => x.arrondissement))];
-        dataPoints = responseData.sort(function (a, b) {
-            if (a.Titre < b.Titre) {
-                return -1;
-            }
-        });
-        // dataPoints = responseData;
-        initializeContentSidebar(responseData);
-        initializeLayersAndFlyTo(arrondissements);
-        drawMarkers(responseData, arrondissements);
+// fetch("data/grands_ensembles_final.json")
+//     .then((response) => response.json())
+//     .then((responseData) => {
+//         // Il faut que je fasse en sorte que l'ordre d'ajout des arrondissements soient le bons, donc avant d'ordonner les données
+//         const arrondissements = [...new Set(responseData.map(x => x.arrondissement))];
+//         dataPoints = responseData.sort(function (a, b) {
+//             if (a.Titre < b.Titre) {
+//                 return -1;
+//             }
+//         });
+//         // dataPoints = responseData;
+//         initializeContentSidebar(responseData);
+//         initializeLayersAndFlyTo(arrondissements);
+//         drawMarkers(responseData, arrondissements);
+//     });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    const arrondissements = [...new Set(data_grands_ensembles.map(x => x.arrondissement))];
+    dataPoints = data_grands_ensembles.sort(function (a, b) {
+        if (a.Titre < b.Titre) {
+            return -1;
+        }
     });
+    // dataPoints = responseData;
+    initializeContentSidebar(data_grands_ensembles);
+    initializeLayersAndFlyTo(arrondissements);
+    drawMarkers(data_grands_ensembles, arrondissements);
+});
 
 function drawMarkers(dataArray, catArray) {
     // catArray.forEach((item) => {
