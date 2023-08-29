@@ -104,6 +104,10 @@ a {
   margin: 0;
 }
 
+.fiche-title img {
+  width: 100%;
+}
+
 .fiche-title.visible h1, .fiche-title .fiche-adresse {
   margin-bottom: 5px;
 }
