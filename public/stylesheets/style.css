@@ -51,7 +51,8 @@ a {
   opacity: 0; */
 }
 
-.fiche-title.visible ~ div, div:has(~ .fiche-title.visible) {
+/* .fiche-title.visible ~ div, div:has(~ .fiche-title.visible) { */
+#ensembleinfo.see-details .fiche-title:not(.visible) {
   /* transform:translate(9999px);
   opacity: 0; */
   /* display: none; */
