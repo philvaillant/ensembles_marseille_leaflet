@@ -45,7 +45,6 @@ function initializeContentSidebar(dataArray) {
     });
     // Il faut seulement afficher le contenu si on est à la page de liste
     if (!selectedFiche) {
-        console.log("initialisation de contenu");
         document.getElementById("ensembleinfo").innerHTML = listContent;
     };
     // listContent = htmlList;
@@ -68,10 +67,8 @@ document.getElementById("fiches").addEventListener('click', function (e) {
     const element = e.target;
     if (element.classList.contains('fiche-title')) {
         showDetails(element.id);
-        console.log(selectedFiche, element);
     }
     else if (element.classList.contains('bouton-page-details')) {
-        console.log(selectedFiche, element);
         goToList();
     }
     // console.log(e.target.id);
@@ -83,7 +80,6 @@ document.getElementById("fiches").addEventListener('click', function (e) {
 });
 
 function showDetails(ficheId) {
-    console.log(ficheId);
     document.getElementById(ficheId).classList.remove('button-6');
     if (selectedFiche) {
         document.getElementById(selectedFiche).classList.remove('visible');
@@ -92,18 +88,15 @@ function showDetails(ficheId) {
     document.getElementById(ficheId).classList.remove('button-6');
     document.getElementById(ficheId).classList.add('visible');
     selectedFiche = ficheId;
-    console.log(selectedFiche);
 }
 
 function goToList() {
-    console.log(selectedFiche);
     document.getElementById(selectedFiche).classList.remove('visible');
     document.getElementById(selectedFiche).classList.add('button-6');
     markersObject[selectedFiche].setStyle(unclickStyle);
     selectedFiche = false;
     document.getElementById("ensembleinfo").innerHTML = listContent;
     // document.getElementById(selectedFiche).classList.remove('visible');
-    console.log(selectedFiche);
 }
 
 function showSidebarInfo(markerId) {
