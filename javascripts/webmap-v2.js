@@ -44,7 +44,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Style des marqueurs
 var unclickStyle = {
-    radius: 6,
+    radius: 10,
     fillColor: "#344feb",
     color: "#344feb",
     weight: 1,
@@ -55,7 +55,7 @@ var unclickStyle = {
 }
 
 var clickStyle = {
-    radius: 8,
+    radius: 12,
     fillColor: '#990F02',
     color: '#990F02',
     weight: 2,
