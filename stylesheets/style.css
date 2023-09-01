@@ -91,7 +91,7 @@ a {
   opacity: 1;
   transition: opacity 1s, max-height 10s ease-out 10s;
   /* transition: max-height 2s linear; */
-  max-height: 200px;
+  max-height: 400px;
 }
 
 .fiche-title h1 {
