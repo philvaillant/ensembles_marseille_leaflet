@@ -7,6 +7,7 @@ var sidebar = L.control.sidebar({
 
 var listContent;
 var selectedFiche;
+var reloadContent;
 
 // add panels dynamically to the sidebar
 sidebar
@@ -39,6 +40,10 @@ function initializeContentSidebar(dataArray) {
     // Il faut seulement afficher le contenu si on est à la page de liste
     if (!selectedFiche) {
         document.getElementById("ensembleinfo").innerHTML = listContent;
+    }
+    else {
+        // besoin d'avoir une variable pour savoir s'il faut relancer le contenu lorque je clique sur un autre ensemble
+        reloadContent = true;
     };
 };
 
@@ -65,12 +70,15 @@ document.getElementById("fiches").addEventListener('click', function (e) {
 });
 
 function showDetails(ficheId) {
-    // document.getElementById(ficheId).classList.remove('button-6');
-    document.getElementById('ensembleinfo').classList.add('see-details');
-    if (selectedFiche) {
+    if (reloadContent) {
+        document.getElementById("ensembleinfo").innerHTML = listContent;
+        reloadContent = false;
+    }
+    else if (selectedFiche) {
         document.getElementById(selectedFiche).classList.remove('visible');
         document.getElementById(selectedFiche).classList.add('button-6');
     }
+    document.getElementById('ensembleinfo').classList.add('see-details');
     document.getElementById(ficheId).classList.remove('button-6');
     document.getElementById(ficheId).classList.add('visible');
     selectedFiche = ficheId;
