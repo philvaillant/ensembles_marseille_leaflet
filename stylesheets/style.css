@@ -8,11 +8,23 @@
   src: url('../fonts/Barlow-SemiBold.ttf');
 }
 
+:root {
+  font-size: 14px;
+}
+
 body {
   margin: 0px;
   padding: 0px;
   font-family: 'BarlowLight';
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
+}
+
+.texte-accueil, .texte-contact {
+  font-size: 1.1rem;
+}
+
+strong {
+  font-family: 'BarlowBold';
 }
 
 .leaflet-container, .leaflet-container button, .dropbtn {
@@ -45,6 +57,7 @@ a {
   opacity: 0;
   transition: opacity 0s, max-height 0s;
   max-height: 0;
+  font-size: 1rem;
   /* max-height: 0;
   transition: max-height 2s linear; */
   /* transition: opacity 1s ease-out;
@@ -83,7 +96,7 @@ a {
 
 .fiche-title h1 {
   pointer-events: none;
-  font-size: 16px;
+  font-size: 1.2rem;
   font-weight: 600;
   font-family: 'BarlowBold';
   margin: 0;
@@ -91,7 +104,7 @@ a {
 
 .fiche-title.visible h1 {
   pointer-events: all;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 1000;
 }
 
@@ -115,11 +128,14 @@ a {
 
 .fiche-title .link-details {
   margin-top: 10px;
-  /* font-size: 14px; */
 }
 
 .fiche-title .bouton-page-details {
   margin-top: 15px;
+}
+
+.leaflet-tooltip {
+  font-size: 0.9rem;
 }
 
 /* select style */
@@ -174,7 +190,7 @@ select:focus {
   background-color: #0074d9;
   color: white;
   padding: 10px;
-  font-size: 14px;
+  font-size: 1.2rem;
   border: none;
 }
 
@@ -194,6 +210,7 @@ select:focus {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   right: 0;
+  font-size: 1rem;
 }
 
 /* .fiche-title {
@@ -217,7 +234,7 @@ select:focus {
   cursor: pointer;
   display: inline-flex;
   /* font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif; */
-  font-size: 16px;
+  font-size: 1.2rem;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
@@ -285,7 +302,7 @@ select:focus {
   background-image: none;
   border: 1px solid transparent;
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 1.42857143;
   border-radius: 4px;
   -webkit-user-select: none;
