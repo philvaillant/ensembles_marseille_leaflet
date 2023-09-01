@@ -19,6 +19,10 @@ body {
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
 }
 
+.leaflet-sidebar-header, .leaflet-sidebar-tabs>ul>li.active, .dropbtn {
+  background-color : #344feb;
+}
+
 .texte-accueil, .texte-contact {
   font-size: 1.1rem;
 }
@@ -187,7 +191,7 @@ select:focus {
 /* Style of hoverable menu */
 /* Dropdown Button */
 .dropbtn {
-  background-color: #0074d9;
+  /* background-color: #0074d9; */
   color: white;
   padding: 10px;
   font-size: 1.2rem;
