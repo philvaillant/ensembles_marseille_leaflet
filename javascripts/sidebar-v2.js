@@ -35,7 +35,7 @@ function initializeContentSidebar(dataArray) {
     // var htmlList = '';
     listContent = '';
     dataArray.forEach((building) => {
-        listContent += '<div class="button-6 fiche-title" id="' + building.Titre + '"><h1>' + building.Titre + '</h1><div class="fiche-adresse">' + building.Adresse + ' 130' + building.arrondissement + ' Marseille' + '</div><img src="' + building.Image + '"><div class="fiche-info"><h3>Programme</h3><p>' + building.Programme +'</p></div><div class="fiche-info"><h3>Dates de construction</h3><p>' + building['Dates de construction'] +'</p></div><div class="fiche-info"><h3>Architecte</h3><p>' + building.Architecte +'</p></div><div class="fiche-info"><h3>Propriétaire</h3><p>' + building.Propriétaire +'</p></div><div class="fiche-info"><h3>Bâti</h3><p>' + building.Bâti +'</p></div><div class="link-details"><a href="' + building['Lien détail'] + '" target="_blank">Lien vers la page de détail sur le site du Ministère de la Culture</a><p>© Thierry Durousseau, 2004-2005</p></div><button class="bouton-page-details">Fermer la fiche de détail</button></div>'
+        listContent += '<div class="button-6 fiche-title" id="' + building.Titre + '"><h1>' + building.Titre + '</h1><button type="button" class="close" aria-label="Close"><span class="back-to-list" aria-hidden="true">&times;</span></button><div class="fiche-adresse">' + building.Adresse + ' 130' + building.arrondissement + ' Marseille' + '</div><img src="' + building.Image + '"><div class="fiche-info"><h3>Programme</h3><p>' + building.Programme +'</p></div><div class="fiche-info"><h3>Dates de construction</h3><p>' + building['Dates de construction'] +'</p></div><div class="fiche-info"><h3>Architecte</h3><p>' + building.Architecte +'</p></div><div class="fiche-info"><h3>Propriétaire</h3><p>' + building.Propriétaire +'</p></div><div class="fiche-info"><h3>Bâti</h3><p>' + building.Bâti +'</p></div><div class="link-details"><a href="' + building['Lien détail'] + '" target="_blank">Lien vers la page de détail sur le site du Ministère de la Culture</a><p>© Thierry Durousseau, 2004-2005</p></div><button class="bouton-page-details back-to-list">Fermer la fiche de détail</button></div>'
     });
     // Il faut seulement afficher le contenu si on est à la page de liste
     if (!selectedFiche) {
@@ -61,10 +61,11 @@ document.getElementById("fiches").addEventListener('mouseout', function (e) {
 
 document.getElementById("fiches").addEventListener('click', function (e) {
     const element = e.target;
+    console.log(element);
     if (element.classList.contains('fiche-title')) {
         showDetails(element.id);
     }
-    else if (element.classList.contains('bouton-page-details')) {
+    else if (element.classList.contains('back-to-list')) {
         goToList();
     }
 });

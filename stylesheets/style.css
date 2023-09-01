@@ -19,11 +19,14 @@ body {
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
 }
 
-.leaflet-sidebar-header, .leaflet-sidebar-tabs>ul>li.active, .dropbtn {
-  background-color : #344feb;
+.leaflet-sidebar-header,
+.leaflet-sidebar-tabs>ul>li.active,
+.dropbtn {
+  background-color: #344feb;
 }
 
-.texte-accueil, .texte-contact {
+.texte-accueil,
+.texte-contact {
   font-size: 1.1rem;
 }
 
@@ -31,7 +34,9 @@ strong {
   font-family: 'BarlowBold';
 }
 
-.leaflet-container, .leaflet-container button, .dropbtn {
+.leaflet-container,
+.leaflet-container button,
+.dropbtn {
   font-family: 'BarlowLight';
 }
 
@@ -44,17 +49,31 @@ a {
   color: #00B7FF;
 }
 
-#map { 
+#map {
   height: 100vh;
-  width: 100vw; 
+  width: 100vw;
   z-index: 1;
+}
+
+.close {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  cursor: pointer;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  font-size: 2.5rem !important;
 }
 
 .makered {
   background-color: red;
 }
 
-.fiche-title > div, .fiche-title > button, .fiche-title > img {
+.fiche-title>div,
+.fiche-title>button,
+.fiche-title>img {
   /* transform:translate(9999px);
   opacity: 0; */
   display: none;
@@ -87,7 +106,9 @@ a {
   transition: max-height 2s linear; */
 }
 
-.fiche-title.visible > div, .fiche-title.visible > button, .fiche-title.visible > img {
+.fiche-title.visible>div,
+.fiche-title.visible>button,
+.fiche-title.visible>img {
   /* transition: opacity 2s linear;  
   transform:translate(0);
   opacity: 1; */
@@ -126,7 +147,8 @@ a {
   width: 100%;
 }
 
-.fiche-title.visible h1, .fiche-title .fiche-adresse {
+.fiche-title.visible h1,
+.fiche-title .fiche-adresse {
   margin-bottom: 5px;
 }
 
@@ -159,7 +181,7 @@ select {
   background-size: 16px 12px;
   border: 1px solid #ced4da;
   border-radius: .25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -168,13 +190,13 @@ select {
 select:focus {
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
 }
 
 /* Filters style */
 #filters {
-  position:absolute; 
-  top:0px; 
+  position: absolute;
+  top: 0px;
   right: 0px;
   margin-top: 10px;
   margin-right: 10px;
@@ -211,7 +233,7 @@ select:focus {
   background-color: #f1f1f1;
   width: 100%;
   /* min-width: 160px; */
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   right: 0;
   font-size: 1rem;
@@ -227,6 +249,7 @@ select:focus {
   display: flex;
   flex-direction: column;
 }
+
 .button-6 {
   align-items: center;
   background-color: #FFFFFF;
@@ -284,13 +307,19 @@ select:focus {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #0074d9;}
+.dropdown:hover .dropbtn {
+  background-color: #0074d9;
+}
 
 /* buttons style */
 .default-button {
