@@ -26,7 +26,7 @@ sidebar
         id: 'about',
         tab: '<i class="fa fa-question"></i>',
         title: 'Contact',
-        pane: '<div><p>Nous sommes Mégane Aussedat et Philippe Vaillant, deux passionnés des sciences urbaines travaillant dans le domaine du logement. Vous pouvez nous contacter via X ou Linkedin.</p></div>',
+        pane: '<div class="texte-contact"><p>Nous sommes Mégane Aussedat (<a href="https://www.linkedin.com/in/m%C3%A9gane-aussedat-90aa63164/" target="_blank">Linkedin</a>) et Philippe Vaillant (<a href="https://twitter.com/Phil_Vaillant" target="_blank">X</a> et <a href="https://www.linkedin.com/in/philippe-vaillant-836b3793/" target="_blank">Linkedin</a>), deux passionnés des sciences urbaines travaillant dans le domaine du logement. N\'hésitez pas à nous contacter pour toute remarque concernant ce projet.</p></div>',
     })
 sidebar.open('home');
 
