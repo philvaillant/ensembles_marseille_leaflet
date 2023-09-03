@@ -54,15 +54,15 @@ document.getElementById("fiches").addEventListener('mouseover', function (e) {
 });
 
 document.getElementById("fiches").addEventListener('mouseout', function (e) {
-    if (markersObject[e.target.id]) {
+    if (markersObject[e.target.id] && (selectedFiche != e.target.id)) {
         markersObject[e.target.id].setStyle(unclickStyle);
     }
 });
 
 document.getElementById("fiches").addEventListener('click', function (e) {
     const element = e.target;
-    console.log(element);
     if (element.classList.contains('fiche-title')) {
+        highlightSelectedMarker(markersObject[element.id]);
         showDetails(element.id);
     }
     else if (element.classList.contains('back-to-list')) {
