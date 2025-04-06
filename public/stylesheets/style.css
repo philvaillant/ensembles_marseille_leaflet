@@ -369,3 +369,10 @@ select:focus {
     display: block; /* Affichez le bouton */
   }
 }
+
+/* Mieux gérer le scroll */
+.leaflet-sidebar-content {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* inertie iOS */
+  height: 100%;
+}
