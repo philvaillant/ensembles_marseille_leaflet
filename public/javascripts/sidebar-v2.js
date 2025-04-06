@@ -27,7 +27,7 @@ sidebar
         id: 'about',
         tab: '<i class="fa fa-question"></i>',
         title: 'Contact',
-        pane: '<div class="texte-contact"><p>Nous sommes Mégane Aussedat (<a href="https://www.linkedin.com/in/m%C3%A9gane-aussedat-90aa63164/" target="_blank">Linkedin</a>) et Philippe Vaillant (<a href="https://twitter.com/Phil_Vaillant" target="_blank">X</a> et <a href="https://www.linkedin.com/in/philippe-vaillant-836b3793/" target="_blank">Linkedin</a>), deux passionnés des sciences urbaines travaillant dans le domaine du logement. N\'hésitez pas à nous contacter pour toute remarque concernant ce projet.</p></div>',
+        pane: '<div class="texte-contact"><p>Nous sommes Mégane Aussedat (<a href="https://www.linkedin.com/in/m%C3%A9gane-aussedat-90aa63164/" target="_blank">Linkedin</a>) et Philippe Vaillant (<a href="https://www.linkedin.com/in/philippe-vaillant-836b3793/" target="_blank">Linkedin</a>), deux passionnés des sciences urbaines travaillant dans le domaine du logement. N\'hésitez pas à nous contacter pour toute remarque concernant ce projet.</p></div>',
     })
 sidebar.open('home');
 
@@ -35,7 +35,7 @@ function initializeContentSidebar(dataArray) {
     // var htmlList = '';
     listContent = '';
     dataArray.forEach((building) => {
-        listContent += '<div class="button-6 fiche-title" id="' + building.Titre + '"><h1>' + building.Titre + '</h1><button type="button" class="close" aria-label="Close"><span class="back-to-list" aria-hidden="true">&times;</span></button><div class="fiche-adresse">' + building.Adresse + ' 130' + building.arrondissement + ' Marseille' + '</div><img src="' + building.Image + '"><div class="fiche-info"><h3>Programme</h3><p>' + building.Programme +'</p></div><div class="fiche-info"><h3>Dates de construction</h3><p>' + building['Dates de construction'] +'</p></div><div class="fiche-info"><h3>Architecte</h3><p>' + building.Architecte +'</p></div><div class="fiche-info"><h3>Propriétaire</h3><p>' + building.Propriétaire +'</p></div><div class="fiche-info"><h3>Bâti</h3><p>' + building.Bâti +'</p></div><div class="link-details"><a href="' + building['Lien détail'] + '" target="_blank">Lien vers la page de détail sur le site du Ministère de la Culture</a><p>© Thierry Durousseau, 2004-2005</p></div><button class="bouton-page-details back-to-list">Fermer la fiche de détail</button></div>'
+        listContent += '<div class="button-6 fiche-title" id="' + building.Titre + '"><h1>' + building.Titre + '</h1><button type="button" class="close" aria-label="Close"><span class="back-to-list" aria-hidden="true">&times;</span></button><div class="fiche-adresse">' + building.Adresse + ' 130' + building.arrondissement + ' Marseille' + '</div><img src="' + building.Image + '"><div class="fiche-info"><h3>Programme</h3><p>' + building.Programme + '</p></div><div class="fiche-info"><h3>Dates de construction</h3><p>' + building['Dates de construction'] + '</p></div><div class="fiche-info"><h3>Architecte</h3><p>' + building.Architecte + '</p></div><div class="fiche-info"><h3>Propriétaire</h3><p>' + building.Propriétaire + '</p></div><div class="fiche-info"><h3>Bâti</h3><p>' + building.Bâti + '</p></div><div class="link-details"><a href="' + building['Lien détail'] + '" target="_blank">Lien vers la page de détail sur le site du Ministère de la Culture</a><p>© Thierry Durousseau, 2004-2005</p></div><button class="bouton-page-details back-to-list">Fermer la fiche de détail</button></div>'
     });
     // Il faut seulement afficher le contenu si on est à la page de liste
     if (!selectedFiche) {
@@ -98,3 +98,20 @@ function showSidebarInfo(markerId) {
     sidebar.open('fiches');
     showDetails(markerId);
 }
+
+// Ajout d'un retour à la carte
+// Sélectionnez tous les éléments avec la classe leaflet-sidebar-close
+var sidebarCloseElements = document.querySelectorAll('.leaflet-sidebar-close');
+
+// Itérez sur chaque élément
+sidebarCloseElements.forEach(function(element) {
+  // Créez un nouveau nœud de texte avec le texte souhaité
+  var textNode = document.createTextNode(" Retour à la Carte");
+
+  // Insérez le nœud de texte après l'icône
+  element.appendChild(textNode);
+
+  // Modifiez le style pour annuler la largeur définie à 40px
+  element.style.width = 'auto'; // ou toute autre valeur souhaitée
+  element.style.padding = '0 4px';
+});
