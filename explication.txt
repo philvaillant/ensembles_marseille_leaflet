@@ -7,7 +7,5 @@ git push
 
 S'assurer que je suis à jour des branches distantes : git fetch origin
 
-Ensuite il faut fusionner avec gh-pages qui est la page utilisée pour le site
-git checkout gh-pages
-git merge main
-git push origin gh-pages
+Pour déployer sur gh pages en fait j'utilise la dépendancy gh pages et je fais juste 
+npm run deploy
