@@ -8,21 +8,6 @@
   src: url('../fonts/Barlow-SemiBold.ttf');
 }
 
-/* Pour tenter de corriger le problème de scroll */
-/* Ne surtout pas forcer display: flex sur .leaflet-sidebar-pane */
-.leaflet-sidebar-pane {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Ce div est celui que tu injectes dynamiquement avec ton HTML (accueil, fiches, etc.) */
-.leaflet-sidebar-pane > div {
-  max-height: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-right: 10px; /* pour pas que ça colle le bord */
-}
-
 :root {
   font-size: 14px;
 }
