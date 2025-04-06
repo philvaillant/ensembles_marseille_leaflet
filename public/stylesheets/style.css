@@ -9,18 +9,18 @@
 }
 
 /* Pour tenter de corriger le problème de scroll */
-html, body {
-  height: 100%;
-  overflow: hidden; /* important pour éviter un scroll parasite de la page */
+/* Ne surtout pas forcer display: flex sur .leaflet-sidebar-pane */
+.leaflet-sidebar-pane {
+  position: relative;
+  overflow: hidden;
 }
 
-.leaflet-sidebar-content {
+/* Ce div est celui que tu injectes dynamiquement avec ton HTML (accueil, fiches, etc.) */
+.leaflet-sidebar-pane > div {
+  max-height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
+  padding-right: 10px; /* pour pas que ça colle le bord */
 }
 
 :root {
@@ -383,11 +383,4 @@ select:focus {
   .access-button {
     display: block; /* Affichez le bouton */
   }
-}
-
-/* Mieux gérer le scroll */
-.leaflet-sidebar-content {
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* inertie iOS */
-  height: 100%;
 }
