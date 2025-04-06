@@ -8,6 +8,21 @@
   src: url('../fonts/Barlow-SemiBold.ttf');
 }
 
+/* Pour tenter de corriger le problème de scroll */
+html, body {
+  height: 100%;
+  overflow: hidden; /* important pour éviter un scroll parasite de la page */
+}
+
+.leaflet-sidebar-content {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
 :root {
   font-size: 14px;
 }
