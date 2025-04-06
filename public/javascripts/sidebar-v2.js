@@ -15,7 +15,7 @@ sidebar
         id: 'home',
         tab: '<i class="fa fa-scroll"></i>',
         title: 'Accueil',
-        pane: '<div class="texte-accueil"><p>Cette carte interactive donne à voir 80 grands ensembles de plus de 100 logements construits à Marseille entre 1955 et 1975. </p><p><strong>Les données utilisées (dont les photographies) sont issues d’une étude commanditée par la direction régionale des affaires culturelles Provence-Alpes-Côte d’Azur (DRAC PACA), et réalisée en 2005 par Thierry Durousseau, architecte et urbaniste. </strong>L\'objectif de ce projet est simplement de valoriser, sous une forme cartographique, les résultats très riches de cette étude qui ont par ailleurs été mis en ligne sur le <a href="https://www.culture.gouv.fr/Regions/Drac-Provence-Alpes-Cote-d-Azur/Politique-et-actions-culturelles/Architecture-contemporaine-remarquable-en-Paca/Les-etudes/Marseille-ensembles-et-residences-de-la-periode-1955-1975" target="_blank">site de la DRAC PACA</a> . </p><p>Les 80 résidences représentées sur la carte constituent un échantillon des 480 ensembles construits entre 1955 et 1975 répertoriés par l’étude. Il s’agit d’ensembles de logements sociaux, privés ou mixtes.</p> <p><strong>Notre volonté, en créant ce site, était de pouvoir faciliter l’identification de ces grands ensembles pour mieux apprivoiser le paysage urbain atypique et unique qu’ils forment.</strong></p> <p>Les noms des cités qui s’affichent dans la liste déroulante, à gauche, sont ceux qui sont affichés à l’écran. La liste change donc à mesure que vous vous déplacez sur la carte.</p></div>',
+        pane: '<div class="texte-accueil"><p>Cette carte interactive donne à voir 80 grands ensembles de plus de 100 logements construits à Marseille entre 1955 et 1975. </p><p><strong>Les données utilisées (dont les photographies) sont issues d’une étude commanditée par la direction régionale des affaires culturelles Provence-Alpes-Côte d’Azur (DRAC PACA), et réalisée en 2005 par Thierry Durousseau, architecte et urbaniste. </strong>L\'objectif de ce projet est simplement de valoriser, sous une forme cartographique, les résultats très riches de cette étude qui ont par ailleurs été mis en ligne sur le <a href="https://www.culture.gouv.fr/Regions/Drac-Provence-Alpes-Cote-d-Azur/Politique-et-actions-culturelles/Architecture-contemporaine-remarquable-en-Paca/Les-etudes/Marseille-ensembles-et-residences-de-la-periode-1955-1975" target="_blank">site de la DRAC PACA</a> . </p><p>Les 80 résidences représentées sur la carte constituent un échantillon des 480 ensembles construits entre 1955 et 1975 répertoriés par l’étude. Il s’agit d’ensembles de logements sociaux, privés ou mixtes.</p> <p><strong>Notre volonté, en créant ce site, était de pouvoir faciliter l’identification de ces grands ensembles pour mieux apprivoiser le paysage urbain atypique et unique qu’ils forment.</strong></p> <p class="last-paragraph">Les noms des cités qui s’affichent dans la liste déroulante, à gauche, sont ceux qui sont affichés à l’écran. La liste change donc à mesure que vous vous déplacez sur la carte.</p><button class="access-button" id="retour-carte">Accéder à la carte</button></div>',
     })
     .addPanel({
         id: 'fiches',
@@ -46,6 +46,10 @@ function initializeContentSidebar(dataArray) {
         reloadContent = true;
     };
 };
+
+document.getElementById("retour-carte").addEventListener('click', function (e) {
+    sidebar.close();
+});
 
 document.getElementById("fiches").addEventListener('mouseover', function (e) {
     if (markersObject[e.target.id]) {

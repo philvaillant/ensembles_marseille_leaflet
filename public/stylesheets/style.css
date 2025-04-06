@@ -21,7 +21,8 @@ body {
 
 .leaflet-sidebar-header,
 .leaflet-sidebar-tabs>ul>li.active,
-.dropbtn {
+.dropbtn,
+.access-button {
   background-color: #344feb;
 }
 
@@ -36,6 +37,7 @@ strong {
 
 .leaflet-container,
 .leaflet-container button,
+.access-button
 .dropbtn {
   font-family: 'BarlowLight';
 }
@@ -212,7 +214,7 @@ select:focus {
 
 /* Style of hoverable menu */
 /* Dropdown Button */
-.dropbtn {
+.dropbtn, .access-button {
   /* background-color: #0074d9; */
   color: white;
   padding: 10px;
@@ -317,7 +319,7 @@ select:focus {
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
+.dropdown:hover .dropbtn, .access-button:hover {
   background-color: #0074d9;
 }
 
@@ -348,4 +350,22 @@ select:focus {
   color: #333;
   background-color: #fff;
   border-color: #ccc;
+}
+
+/* Style pour le paragraphe accueil dans la sidebar */
+/* Par défaut, masquez le bouton */
+.access-button {
+  display: none;
+  cursor: pointer; /* Change le curseur en pointeur */
+}
+
+/* Pour les écrans de moins de 768px de large */
+@media (max-width: 768px) {
+  .last-paragraph {
+    display: none; /* Masquez le texte */
+  }
+
+  .access-button {
+    display: block; /* Affichez le bouton */
+  }
 }
